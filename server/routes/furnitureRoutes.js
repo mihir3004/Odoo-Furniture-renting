@@ -6,7 +6,7 @@ const router = express.Router();
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "uploads/"); // Destination folder for storing uploaded images temporarily
+        cb(null, "public/uploads/"); // Destination folder for storing uploaded images temporarily
     },
     filename: (req, file, cb) => {
         cb(null, `${Date.now()}_${file.originalname}`);

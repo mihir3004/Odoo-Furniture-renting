@@ -29,6 +29,7 @@ const Login = () => {
             if (res.status == "success") {
                 localStorage.setItem("token", res.token);
                 localStorage.setItem("role", res.user.role);
+                localStorage.setItem("id", res.user._id);
             }
             navigate("/");
             action.resetForm();

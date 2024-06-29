@@ -1,9 +1,14 @@
 import { Button } from "primereact/button";
 import React from "react";
 import axios from "axios";
-function Payment() {
+function Payment({ furniture }) {
     const payment = async () => {
-        let res = await axios.post("http://localhost:9999/payment");
+        // console.log(furniture);
+        localStorage.setItem("furniture", JSON.stringify(furniture));
+        let res = await axios.post("http://localhost:9999/payment", {
+            amount: furniture.rentalPrice,
+            name: furniture.name,
+        });
         console.log(res);
         window.location.href = res.data.url;
     };

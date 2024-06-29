@@ -13,34 +13,36 @@ app.use("/auth", userRoutes);
 app.use("/furniture", furnitureRoutes);
 connectDB();
 app.post("/payment", async (req, res) => {
-  const product = await stripe.products.create({
-    name: "T-shirt",
-  });
-  if (product) {
-    var price = await stripe.prices.create({
-      product: `${product.id}`,
-      unit_amount: "10000",
-      currency: "inr",
+    const { amount, name } = req.body;
+    const product = await stripe.products.create({
+        name: name,
     });
-    if (price.id) {
-      var session = await stripe.checkout.sessions.create({
-        line_items: [
-          {
-            price: `${price.id}`,
-            quantity: 1,
-          },
-        ],
-        mode: "payment",
-        success_url: "http://localhost:3000/success",
-        cancel_url: "http://localhost:3000/error",
-        customer_email: "demo@gmail.com",
-      });
+    if (product) {
+        var price = await stripe.prices.create({
+            product: `${product.id}`,
+            unit_amount: amount,
+            currency: "inr",
+        });
+        if (price.id) {
+            var session = await stripe.checkout.sessions.create({
+                line_items: [
+                    {
+                        price: `${price.id}`,
+                        quantity: 1,
+                    },
+                ],
+                mode: "payment",
+                success_url:
+                    "http://localhost:3000/user?session_id={CHECKOUT_SESSION_ID}",
+                cancel_url: "http://localhost:3000/error",
+                customer_email: "demo@gmail.com",
+            });
+        }
+        res.json(session);
     }
-    res.json(session);
-  }
 });
 
 const PORT = process.env.PORT || 9999;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });
