@@ -38,7 +38,7 @@ export const Header = () => {
             className="opacity-70 w-36 h-36 rounded-full  m-auto  "
           />
           <Link
-            to={"/school"}
+            to={"/admin"}
             className="text-white text-3xl  first-letter:font-semibold uppercase hover:text-gray-300 "
           >
             Admin
@@ -47,7 +47,7 @@ export const Header = () => {
         <nav className=" text-base font-semibold pt-3 overflow-y-scroll h-4/6">
           <div className=" hover:shadow-gray-400 hover:shadow-md">
             <Link
-              to={"/school"}
+              to={"/admin"}
               className="flex items-center active-nav-link text-white py-4 pl-6 nav-item gap-2 focus:outline-none focus:shadow-md focus:shadow-gray-500"
             >
               <svg
@@ -86,6 +86,38 @@ export const Header = () => {
                 />
               </svg>
               Profile
+            </Link>
+          </div>
+          <div className="hover:shadow-gray-400 hover:shadow-md">
+            <Link
+              to={"payment"}
+              className="flex items-center active-nav-link text-white py-4 pl-6 nav-item gap-2 focus:outline-none focus:shadow-md focus:shadow-gray-500"
+            >
+              <span className="inline-flex items-center">
+                <span
+                  className="pi pi-credit-card mr-2"
+                  style={{
+                    fontSize: "1.4rem",
+                  }}
+                ></span>{" "}
+                Payment
+              </span>
+            </Link>
+          </div>
+          <div className="hover:shadow-gray-400 hover:shadow-md">
+            <Link
+              to={"analysis"}
+              className="flex items-center active-nav-link text-white py-4 pl-6 nav-item gap-2 focus:outline-none focus:shadow-md focus:shadow-gray-500"
+            >
+              <span className="inline-flex items-center">
+                <span
+                  className="pi pi-chart-bar mr-2"
+                  style={{
+                    fontSize: "1.4rem",
+                  }}
+                ></span>
+                Analysis
+              </span>
             </Link>
           </div>
         </nav>

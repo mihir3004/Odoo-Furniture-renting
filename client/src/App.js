@@ -14,6 +14,8 @@ import Fail from "./pages/Fail";
 import Furniture from "./pages/User/Furniture";
 import FurnitureMainPage from "./pages/User/FurnitureMainPage";
 import SellItem from "./pages/User/SellItem";
+import PaymentPage from "./pages/Admin/PaymentPage";
+import Analysis from "./pages/Admin/Analysis";
 const App = () => {
   const router = createBrowserRouter([
     {
@@ -62,6 +64,16 @@ const App = () => {
         {
           path: "",
           element: <AdminDashboard />,
+          errorElement: <ErrorPage />,
+        },
+        {
+          path: "payment",
+          element: <PaymentPage />,
+          errorElement: <ErrorPage />,
+        },
+        {
+          path: "analysis",
+          element: <Analysis />,
           errorElement: <ErrorPage />,
         },
       ],

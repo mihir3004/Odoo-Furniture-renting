@@ -37,6 +37,14 @@ export const Dashboard = () => {
           <div className="font-semibold p-5 text-2xl">Total Earning</div>
           <AnimatedCount finalCount={50} />
         </div>
+        <div className=" text-center rounded-lg bg-gray-300 ">
+          <div className="font-semibold p-5 text-2xl">Sells Count</div>
+          <AnimatedCount finalCount={50} />
+        </div>
+        <div className=" text-center rounded-lg bg-gray-300 ">
+          <div className="font-semibold p-5 text-2xl">Total Category</div>
+          <AnimatedCount finalCount={50} />
+        </div>
       </div>
     </div>
   );
