@@ -23,5 +23,6 @@ router.post(
 router.get("/getCategories", furnitureController.getCategories);
 router.get("/getCount", furnitureController.getCount);
 router.get("/chartCount", furnitureController.chartCount);
+router.get("/getFurniture", furnitureController.getFurniture);
 
 module.exports = router;
