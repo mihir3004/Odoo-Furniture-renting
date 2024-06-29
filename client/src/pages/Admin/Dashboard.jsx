@@ -9,6 +9,24 @@ export const Dashboard = () => {
   const [visible, setvisible] = useState(false);
   const navigate = useNavigate();
 
+  const fetchCount = async () => {
+    try {
+      const res = await fetchGet(
+        "furniture/getCount",
+        localStorage.getItem("token")
+      );
+
+      console.log(res);
+      setdata();
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCount();
+  }, []);
+
   const AnimatedCount = ({ finalCount }) => {
     const [count, setCount] = useState(0);
 
