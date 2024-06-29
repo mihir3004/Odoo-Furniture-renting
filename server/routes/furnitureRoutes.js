@@ -5,20 +5,20 @@ const express = require("express");
 const router = express.Router();
 
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/"); // Destination folder for storing uploaded images temporarily
-  },
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}_${file.originalname}`);
-  },
+    destination: (req, file, cb) => {
+        cb(null, "uploads/"); // Destination folder for storing uploaded images temporarily
+    },
+    filename: (req, file, cb) => {
+        cb(null, `${Date.now()}_${file.originalname}`);
+    },
 });
 const upload = multer({ storage });
 
-router.get("/getAllFurniture", furnitureController.getAllFurniture);
+router.get("/getAll", furnitureController.getAllFurniture);
 router.post(
-  "/add",
-  upload.array("images", 5),
-  furnitureController.addFurniture
+    "/add",
+    upload.array("images", 5),
+    furnitureController.addFurniture
 );
 router.get("/getCategories", furnitureController.getCategories);
 
