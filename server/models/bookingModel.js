@@ -32,6 +32,10 @@ const BookingSchema = new mongoose.Schema({
         default: "pending",
         index: true, // Add index for better search performance
     },
+    isActive: {
+        type: Number,
+        default: 1,
+    },
     createdAt: {
         type: Date,
         default: Date.now,

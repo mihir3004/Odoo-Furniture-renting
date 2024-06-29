@@ -41,6 +41,10 @@ const furnitureSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    isActive: {
+        type: Number,
+        default: 1,
+    },
     ownerId: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: "users",

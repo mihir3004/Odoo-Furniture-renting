@@ -21,6 +21,9 @@ const userSchema = new mongoose.Schema({
         enum: ["user", "admin"],
         default: "user",
     },
+    stripe_id: {
+        type: String,
+    },
     location: {
         type: String,
     },
@@ -32,6 +35,11 @@ const userSchema = new mongoose.Schema({
         require: [true, "please provide a password"],
         minlength: 8,
         select: false,
+    },
+
+    isActive: {
+        type: Number,
+        default: 1,
     },
     passwordChangedAt: Date,
     passwordResetToken: String,
