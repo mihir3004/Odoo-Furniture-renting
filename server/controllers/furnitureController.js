@@ -5,12 +5,25 @@ const categoryModel = require("../models/categoryModel");
 const paymentModel = require("../models/paymentModel");
 
 module.exports.getAllFurniture = catchAsync(async (req, res, next) => {
+  let query = { ownerId: { $ne: req.query.id } };
+
+  if (req.query.category) {
+    query.category = req.query.category;
+  }
+
+  if (req.query.state) {
+    query.state = req.query.state;
+  }
+  if (req.query.district) {
+    query.district = req.query.district;
+  }
+
   const furniture = await furnitureModel
-    .find({ ownerId: { $ne: req.query.id } })
+    .find(query)
     .populate("category")
     .populate("ownerId");
 
-  res.status(201).json({ status: "success", furnitures: furniture });
+  res.status(200).json({ status: "success", furnitures: furniture });
 });
 
 module.exports.addFurniture = async (req, res, next) => {
