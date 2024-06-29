@@ -90,8 +90,8 @@ export const Dashboard = () => {
     <div className="m-5">
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8 grid-rows-3">
         <div className=" text-center rounded-lg bg-gray-300 ">
-          <div className="font-semibold p-5 text-2xl">Total Students</div>
-          <AnimatedCount finalCount={50} />
+          <div className="font-semibold p-5 text-2xl">Total Added Item</div>
+          <AnimatedCount finalCount={5} />
         </div>
       </div>
     </div>
