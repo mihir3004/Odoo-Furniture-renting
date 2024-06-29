@@ -41,7 +41,7 @@ module.exports.signup = async (req, res, next) => {
             role: "user",
             district: req.body.district,
             contact: req.body.contact,
-            stripeId: req.body.stripeId || "",
+            stripe_id: req.body.stripeId || "",
         });
 
         // const token = signToken(newUser._id);
@@ -173,6 +173,15 @@ module.exports.restrictTo = (...roles) => {
 module.exports.getAll = async (req, res, next) => {
     try {
         const all = await userModel.find({});
+        res.json({ all });
+    } catch (err) {
+        console.log(err);
+        res.json({ err });
+    }
+};
+module.exports.getProfile = async (req, res, next) => {
+    try {
+        const all = await userModel.find({ _id: req.query.id });
         res.json({ all });
     } catch (err) {
         console.log(err);
