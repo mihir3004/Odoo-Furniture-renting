@@ -1,4 +1,25 @@
+import { useParams } from "react-router-dom";
+import { fetchGet } from "../../apis/fetch";
+import { useEffect, useState } from "react";
+
 const FurnitureMainPage = () => {
+  const urlParams = useParams();
+  const [furniture, setFurniture] = useState([]);
+
+  async function getAllFurniture() {
+    const response = await fetchGet(
+      `furniture/getAll?_id=${urlParams.name}`,
+      localStorage.getItem("token")
+    );
+    if (response.status == "success") {
+      setFurniture(response.furnitures);
+    }
+    console.log(response);
+  }
+  useEffect(() => {
+    getAllFurniture();
+    return () => {};
+  }, []);
   return (
     <div class="bg-gray-100">
       <div class="container mx-auto p-4">
