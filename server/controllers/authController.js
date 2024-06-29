@@ -58,15 +58,19 @@ module.exports.signup = async (req, res, next) => {
 
 module.exports.login = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, role } = req.body;
 
     // 1) Check if email and password exist
-    if (!email || !password) {
-      return next(new AppError("Please provide email and password!", 400));
+    if (!email || !password || !role) {
+      return next(
+        new AppError("Please provide email , password and Role!", 400)
+      );
     }
 
     // 2) Check if user exists && password is correct
-    const user = await userModel.findOne({ email }).select("+password");
+    const user = await userModel
+      .findOne({ email: email, role: role })
+      .select("+password");
 
     if (!user) {
       return next(new AppError("Incorrect email or password", 401));
