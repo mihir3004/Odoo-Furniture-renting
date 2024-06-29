@@ -41,7 +41,7 @@ const FurnitureMainPage = () => {
                 Description: {furniture[0].description}
               </p>
               <p class="text-xl text-gray-900 font-bold mb-6">
-                Price: $ {furniture[0].rentalPrice / 100}
+                Price: ₹ {furniture[0].rentalPrice / 100}
               </p>
               <Payment furniture={furniture[0]}></Payment>
             </div>

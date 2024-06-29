@@ -34,9 +34,7 @@ const Furniture = () => {
   }
   useEffect(() => {
     getAllFurniture();
-    return () => {
-      // Cleanup logic here (e.g., unsubscribe from event listeners, clear timeouts/intervals)
-    };
+    return () => {};
   }, []);
 
   const cities = [

@@ -9,6 +9,8 @@ import { FileUpload } from "primereact/fileupload";
 import { Button } from "primereact/button";
 import { SellItemValidation } from "../../Schemas/SellItemValidation";
 import { fetchGet } from "../../apis/fetch";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const rentalPeriodOptions = [
   { label: "Daily", value: "daily" },
@@ -18,6 +20,7 @@ const rentalPeriodOptions = [
 
 const SellItem = () => {
   const [categories, setCategories] = useState([]);
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -55,6 +58,13 @@ const SellItem = () => {
         body: formData,
       });
       if (res.status == 201) {
+        Swal.fire({
+          title: "Success",
+          text: "Item processed successfully",
+          icon: "success",
+        }).then(() => {
+          navigate("/user/sell");
+        });
         formik.resetForm();
       }
       console.log(res);
