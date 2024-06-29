@@ -12,9 +12,9 @@ router.post("/forgotPassword", authController.forgetPassword);
 
 //after login
 router.patch(
-  "/updateMyPassword",
-  authController.protect,
-  authController.updatePassword
+    "/updateMyPassword",
+    authController.protect,
+    authController.updatePassword
 );
 
 module.exports = router;
