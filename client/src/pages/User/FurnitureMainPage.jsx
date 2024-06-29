@@ -30,15 +30,15 @@ const FurnitureMainPage = () => {
         <div class="container mx-auto p-8">
           <div class="flex flex-col lg:flex-row items-center lg:items-start">
             <div class="flex-1 p-4">
-              <h1 class="text-4xl font-bold text-gray-900 mb-4">
+              <h1 class="text-4xl font-bold text-black mb-4">
                 Name:{furniture[0].name}
               </h1>
-              <p class="text-lg text-gray-700 flex items-center mb-4">
+              <p class="text-lg text-gray-500 flex items-center mb-4">
                 Location:{furniture[0].ownerId.district},{" "}
                 {furniture[0].ownerId.state}
               </p>
-              <p class="text-blue-600 font-semibold mb-4">
-                description:{furniture[0].description}
+              <p class="text-black-600 font-semibold mb-4">
+                Description:{furniture[0].description}
               </p>
               <p class="text-xl text-gray-900 font-bold mb-6">
                 Price: ${furniture[0].rentalPrice / 100}
