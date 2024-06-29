@@ -15,14 +15,6 @@ export const verifyLoader = async () => {
     if (!token || !role) {
         return redirect("/");
     } else {
-        const result = await fetchGet(role.toLowerCase() + "/verify", token);
-        if (result.success && result.data.role == role) {
-            localStorage.setItem("username", result.data.username);
-            localStorage.setItem("role", result.data.role);
-            return null;
-        } else {
-            localStorage.clear();
-            return redirect("/");
-        }
+        return redirect("/" + role.toLowerCase());
     }
 };
