@@ -49,7 +49,7 @@ const Login = () => {
             <div className="w-full p-4 sm:p-[3.125rem] xl:p-[4.375rem]">
               {/* <span className="mb-1.5 block font-medium">Start for free</span> */}
               <h1 className="mb-9 text-center text-2xl font-bold text-black dark:text-white sm:text-title-xl2 uppercase">
-                Sign In to Dropout Analysis Portal
+                Sign In to Furniture portal
               </h1>
 
               <form onSubmit={formik.handleSubmit}>

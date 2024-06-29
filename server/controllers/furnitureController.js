@@ -73,5 +73,29 @@ module.exports.getCount = async (req, res) => {
 
 module.exports.chartCount = async (req, res) => {
   try {
-  } catch (err) {}
+    const { groupByField } = req.query;
+
+    if (!groupByField) {
+      return res.status(400).json({ error: "Missing groupByField parameter" });
+    }
+
+    const pipeline = [
+      {
+        $group: {
+          _id: `$${groupByField}`,
+          count: { $sum: 1 },
+        },
+      },
+    ];
+
+    const result = await furnitureModel.aggregate(pipeline);
+
+    res.status(200).json({
+      status: "success",
+      result,
+    });
+  } catch (err) {
+    console.error("Error while aggregating data:", err);
+    res.status(500).json({ error: "Failed to aggregate data" });
+  }
 };

@@ -111,11 +111,9 @@ const Furniture = () => {
 
               <div class="p-4">
                 <Link to={`${item._id}`}>
-                  <h2 class="text-lg font-semibold">{item.name}</h2>
+                  <h2 class="text-lg font-light">{item.name}</h2>
                   <p class="text-gray-600">{item.description}</p>
-                  <p class="text-gray-600">
-                    Rent Price : {item.rentalPrice / 100}
-                  </p>
+                  <p class="font-bold">Rent Price : {item.rentalPrice / 100}</p>
                 </Link>
               </div>
             </div>
