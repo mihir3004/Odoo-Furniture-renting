@@ -3,7 +3,7 @@ import ErrorPage from "./pages/ErrorPage";
 import { PrimeReactProvider } from "primereact/api";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import { loginLoader } from "./loaders/verifyLoader";
+import { loginLoader, verifyLoader } from "./loaders/verifyLoader";
 import { Header } from "./components/User/Header";
 import { Dashboard } from "./pages/User/Dashboard";
 import { Header as AdminHeader } from "./components/Admin/Header";
