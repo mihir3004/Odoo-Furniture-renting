@@ -1,15 +1,8 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import {
-  Outlet,
-  NavLink,
-  Link,
-  useNavigate,
-  useLoaderData,
-} from "react-router-dom";
+import { Outlet, NavLink, Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import logo from "../../assets/logo.jpg";
 export const Header = () => {
-  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const LogoutHandler = () => {
@@ -33,7 +26,7 @@ export const Header = () => {
       <aside className="relative  bg-[#13459c] w-1/5  hidden sm:block shadow-xl shadow-gray-200 h-screen overflow-y-hidden ">
         <div className=" top-0 left-0 p-6 text-center">
           <img
-            src={"image"}
+            src={logo}
             alt="symbol"
             className="opacity-70 w-36 h-36 rounded-full  m-auto  "
           />

@@ -2,14 +2,14 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { fetchPost } from "../../apis/fetch";
-// function isValidSessionId(sessionId) {
-//   const regex = /^cs_test_[A-Za-z0-9]{40}$/;
-//   return regex.test(sessionId);
-// }
+import Swal from "sweetalert2";
+function isValidSessionId(sessionId) {
+  const regex = /^cs_test/;
+  return regex.test(sessionId);
+}
+
 export const Dashboard = () => {
-  const [data, setdata] = useState({});
-  const [visible, setvisible] = useState(false);
-  const location = useLocation(); // Get the location object
+  const location = useLocation();
   const navigate = useNavigate();
 
   const getQueryParams = () => {
@@ -36,7 +36,19 @@ export const Dashboard = () => {
     );
     console.log(res);
     if (res.status === "success") {
-      navigate("/user");
+      Swal.fire({
+        title: "Success",
+        text: "Payment processed successfully",
+        icon: "success",
+      }).then(() => {
+        navigate("/user"); // Navigate after showing the success message
+      });
+    } else {
+      Swal.fire({
+        title: "Error",
+        text: "There was an issue processing your payment",
+        icon: "error",
+      });
     }
   };
 
@@ -45,9 +57,9 @@ export const Dashboard = () => {
     const session_id = queryParams.get("session_id");
     console.log(session_id);
 
-    // if (isValidSessionId(session_id)) {
-    validatePayment();
-    // }
+    if (isValidSessionId(session_id)) {
+      validatePayment();
+    }
   }, [location.search]);
 
   const AnimatedCount = ({ finalCount }) => {

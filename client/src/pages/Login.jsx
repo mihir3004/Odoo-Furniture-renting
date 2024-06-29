@@ -5,7 +5,7 @@ import { LoginValidationSchemas } from "../Schemas/LoginValidation";
 import { Button } from "primereact/button";
 import { fetchPost } from "../apis/fetch";
 import { Dropdown } from "primereact/dropdown";
-
+import logo from "../assets/logo.jpg";
 const initialValues = {
   email: "",
   password: "",
@@ -33,14 +33,14 @@ const Login = () => {
   });
   return (
     <>
-      <div className="min-h-screen rounded-sm border border-stroke bg-[#EEEEEE] shadow-default dark:border-strokedark dark:bg-boxdark ">
+      <div className="min-h-screen rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark ">
         <div className="flex flex-wrap items-center m-4">
           <div className="hidden w-full xl:block xl:w-1/2 min-h-screen m-auto justify-center items-center ">
             <div className="py-[10.375rem] px-[6.5rem] text-center ">
               {/* <Link className=" inline-block" to=""></Link> */}
 
               <span className="inline-block mx-auto">
-                {<img src="" alt="symbol" />}
+                {<img src={logo} alt="symbol" />}
               </span>
             </div>
           </div>
