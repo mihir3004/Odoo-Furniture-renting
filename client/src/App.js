@@ -15,75 +15,77 @@ import Furniture from "./pages/User/Furniture";
 import FurnitureMainPage from "./pages/User/FurnitureMainPage";
 import SellItem from "./pages/User/SellItem";
 const App = () => {
-    const router = createBrowserRouter([
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Login />,
+      loader: loginLoader,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: "/register",
+      element: <Register />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: "/user",
+      element: <Header />,
+      errorElement: <ErrorPage />,
+      children: [
         {
-            path: "/",
-            element: <Login />,
-            loader: loginLoader,
-            errorElement: <ErrorPage />,
+          path: "",
+          element: <Dashboard />,
+          errorElement: <ErrorPage />,
         },
         {
-            path: "/register",
-            element: <Register />,
-            errorElement: <ErrorPage />,
+          path: "furniture",
+          element: <Furniture />,
+          errorElement: <ErrorPage />,
         },
         {
-            path: "/user",
-            element: <Header />,
-            errorElement: <ErrorPage />,
-            children: [
-                {
-                    path: "",
-                    element: <Dashboard />,
-                    errorElement: <ErrorPage />,
-                },
-                {
-                    path: "furniture",
-                    element: <Furniture />,
-                    errorElement: <ErrorPage />,
-                },
-                {
-                    path: "furniture/:name",
-                    element: <FurnitureMainPage />,
-                    errorElement: <ErrorPage />,
-                },
-            ],
+          path: "furniture/:name",
+          element: <FurnitureMainPage />,
+          errorElement: <ErrorPage />,
         },
         {
-            path: "/admin",
-            element: <AdminHeader />,
-            errorElement: <ErrorPage />,
-            children: [
-                {
-                    path: "",
-                    element: <AdminDashboard />,
-                    errorElement: <ErrorPage />,
-                },
-            ],
+          path: "sell",
+          element: <SellItem />,
+          errorElement: <ErrorPage />,
         },
+      ],
+    },
+    {
+      path: "/admin",
+      element: <AdminHeader />,
+      errorElement: <ErrorPage />,
+      children: [
         {
-            path: "sell",
-            element: <SellItem />,
+          path: "",
+          element: <AdminDashboard />,
+          errorElement: <ErrorPage />,
         },
-        {
-            path: "payment",
-            element: <Payment />,
-        },
-        {
-            path: "success",
-            element: <Success />,
-        },
-        {
-            path: "fail",
-            element: <Fail />,
-        },
-    ]);
+      ],
+    },
 
-    return (
-        <PrimeReactProvider>
-            <RouterProvider router={router}></RouterProvider>
-        </PrimeReactProvider>
-    );
+    {
+      path: "payment",
+      element: <Payment />,
+    },
+    {
+      path: "success",
+      element: <Success />,
+    },
+    {
+      path: "fail",
+      element: <Fail />,
+    },
+  ]);
+
+  return (
+    <PrimeReactProvider>
+      <RouterProvider router={router}></RouterProvider>
+    </PrimeReactProvider>
+  );
 };
 
 export default App;
