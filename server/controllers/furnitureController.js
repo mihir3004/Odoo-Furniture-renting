@@ -72,39 +72,11 @@ module.exports.addFurniture = async (req, res, next) => {
             rentalPeriod,
             ownerId,
         } = req.body;
-        const images = []; // Array to store Google Drive file IDs or URLs
 
         // Upload each file to Google Drive and collect file IDs or URLs
-        for (let i = 0; i < req.files.length; i++) {
-            const file = req.files[i];
-            const filePath = file.path;
-            const mimeType = file.mimetype;
 
-            const fileMetadata = {
-                name: file.filename,
-                mimeType: mimeType,
-                parents: ["1XXIX4fLAnLMAk0G47UBENlnQxmamTLwS"],
-            };
-            const media = {
-                mimeType: mimeType,
-                body: require("fs").createReadStream(filePath),
-            };
-
-            const response = await drive.files.create({
-                resource: fileMetadata,
-                media: media,
-                fields: "id, webContentLink", // Retrieve file ID and webContentLink (URL)
-            });
-
-            const fileId = response.data.id;
-            const fileUrl = response.data.webContentLink; // You can use this if you prefer to store URLs instead of IDs
-
-            images.push(fileId); // Store Google Drive file ID
-            // images.push(fileUrl); // Uncomment if storing URLs instead
-
-            // Delete local file after uploading to Google Drive
-            fs.unlinkSync(filePath);
-        }
+        const images = req.files.map((file) => file.filename);
+        console.log(images);
 
         // Save furniture document with images (file IDs or URLs) to MongoDB
         const newFurniture = new furnitureModel({
