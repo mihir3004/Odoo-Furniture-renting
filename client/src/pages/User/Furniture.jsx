@@ -40,12 +40,12 @@ const Furniture = () => {
   }, []);
 
   const cities = [
-    { name: "Chicago", code: "CHI" },
-    { name: "Santa Monica", code: "SM" },
-    { name: "Juneau", code: "JUN" },
-    { name: "Gary", code: "GAR" },
-    { name: "Oakland", code: "OAK" },
-    { name: "Portland", code: "POR" },
+    { name: "Sofa", code: "CHI" },
+    { name: "TV Stand", code: "SM" },
+    { name: "Dining Table", code: "JUN" },
+    { name: "Chair", code: "GAR" },
+    { name: "Bed", code: "OAK" },
+    { name: "Storage Cabinate", code: "POR" },
   ];
 
   return (
@@ -65,7 +65,7 @@ const Furniture = () => {
               options={cities}
               onChange={(e) => setSelectedCities(e.value)}
               optionLabel="name"
-              placeholder="Select Cities"
+              placeholder="Select Categories"
               display="chip"
               maxSelectedLabels={3}
               className="w-full"

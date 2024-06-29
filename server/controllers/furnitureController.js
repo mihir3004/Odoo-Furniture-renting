@@ -13,6 +13,15 @@ module.exports.getAllFurniture = catchAsync(async (req, res, next) => {
   res.status(201).json({ status: "success", furnitures: furniture });
 });
 
+module.exports.getFurniture = catchAsync(async (req, res, next) => {
+  const furniture = await furnitureModel
+    .find(req.query)
+    .populate("category")
+    .populate("ownerId");
+
+  res.status(201).json({ status: "success", furnitures: furniture });
+});
+
 module.exports.addFurniture = async (req, res, next) => {
   console.log(req.body);
   try {
