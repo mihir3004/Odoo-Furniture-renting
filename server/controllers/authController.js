@@ -26,9 +26,8 @@ const createSendToken = (user, statusCode, res) => {
   res.status(statusCode).json({
     status: "success",
     token,
-    data: {
-      user,
-    },
+
+    user,
   });
 };
 
@@ -39,6 +38,10 @@ module.exports.signup = async (req, res, next) => {
       name: req.body.name,
       email: req.body.email,
       password: req.body.password,
+      state: req.body.state,
+      district: req.body.district,
+      contact: req.body.contact,
+      stripeId: req.body.stripeId || "",
     });
 
     const token = signToken(newUser._id);
