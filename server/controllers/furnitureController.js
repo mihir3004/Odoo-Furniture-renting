@@ -6,7 +6,7 @@ const paymentModel = require("../models/paymentModel");
 
 module.exports.getAllFurniture = catchAsync(async (req, res, next) => {
   const furniture = await furnitureModel
-    .find(req.query)
+    .find({ ownerId: { $ne: req.query.id } })
     .populate("category")
     .populate("ownerId");
 
@@ -71,11 +71,7 @@ module.exports.getCount = async (req, res) => {
   });
 };
 
-module.exports.chartCount=async(req,res)=>{
+module.exports.chartCount = async (req, res) => {
   try {
-    
-  } catch (err) {
-    
-  }
-}
-
+  } catch (err) {}
+};
