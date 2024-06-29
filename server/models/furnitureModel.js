@@ -25,7 +25,8 @@ const furnitureSchema = new mongoose.Schema({
     },
   ],
   category: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "categories",
     required: true,
   },
   rentalPeriod: {
