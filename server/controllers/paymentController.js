@@ -2,12 +2,13 @@ const paymentModel = require("../models/paymentModel");
 const bookingModel = require("../models/bookingModel");
 
 module.exports.addPayment = async (req, res, next) => {
+  console.log(req.body);
   try {
     const newBooking = new bookingModel({
       user: req.body.user,
       furniture: req.body.furniture,
       startDate: Date.now(),
-      endDate: req.body.endDate,
+      endDate: Date.now(),
       totalAmount: req.body.totalAmount,
     });
 
@@ -25,6 +26,7 @@ module.exports.addPayment = async (req, res, next) => {
     res.json({
       booked,
       payment,
+      status: "success",
     });
   } catch (err) {
     console.log(err);

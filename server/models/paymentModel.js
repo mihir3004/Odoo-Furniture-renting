@@ -26,3 +26,5 @@ const paymentSchema = new mongoose.Schema({
     ref: "bookings",
   },
 });
+
+module.exports = mongoose.model("payments", paymentSchema);

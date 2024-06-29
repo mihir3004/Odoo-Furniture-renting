@@ -1,10 +1,13 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { fetchGet, fetchPost } from "../../apis/fetch";
+import Furniture from "../User/Furniture";
 
 export const Dashboard = () => {
   const [data, setdata] = useState({});
   const [visible, setvisible] = useState(false);
-  useEffect(() => {}, []);
+  const navigate = useNavigate();
 
   const AnimatedCount = ({ finalCount }) => {
     const [count, setCount] = useState(0);

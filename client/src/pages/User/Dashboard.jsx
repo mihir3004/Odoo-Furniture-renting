@@ -1,10 +1,54 @@
 import { useEffect } from "react";
 import { useState } from "react";
-
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { fetchPost } from "../../apis/fetch";
+// function isValidSessionId(sessionId) {
+//   const regex = /^cs_test_[A-Za-z0-9]{40}$/;
+//   return regex.test(sessionId);
+// }
 export const Dashboard = () => {
   const [data, setdata] = useState({});
   const [visible, setvisible] = useState(false);
-  useEffect(() => {}, []);
+  const location = useLocation(); // Get the location object
+  const navigate = useNavigate();
+
+  const getQueryParams = () => {
+    return new URLSearchParams(location.search);
+  };
+
+  const validatePayment = async () => {
+    const furniture = JSON.parse(localStorage.getItem("furniture"));
+
+    const data = {
+      user: localStorage.getItem("id"),
+      furniture: furniture._id,
+      totalAmount: furniture.rentalPrice,
+      endDate: Date.now(),
+      buyerId: localStorage.getItem("id"),
+      sellerId: furniture.ownerId._id,
+      amount: furniture.rentalPrice,
+    };
+
+    const res = await fetchPost(
+      "payment/addPayment",
+      localStorage.getItem("token"),
+      JSON.stringify(data)
+    );
+    console.log(res);
+    if (res.status === "success") {
+      navigate("/user");
+    }
+  };
+
+  useEffect(() => {
+    const queryParams = getQueryParams();
+    const session_id = queryParams.get("session_id");
+    console.log(session_id);
+
+    // if (isValidSessionId(session_id)) {
+    validatePayment();
+    // }
+  }, [location.search]);
 
   const AnimatedCount = ({ finalCount }) => {
     const [count, setCount] = useState(0);
