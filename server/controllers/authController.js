@@ -26,7 +26,6 @@ const createSendToken = (user, statusCode, res) => {
   res.status(statusCode).json({
     status: "success",
     token,
-
     user,
   });
 };
@@ -39,12 +38,13 @@ module.exports.signup = async (req, res, next) => {
       email: req.body.email,
       password: req.body.password,
       state: req.body.state,
+      role: "user",
       district: req.body.district,
       contact: req.body.contact,
       stripeId: req.body.stripeId || "",
     });
 
-    const token = signToken(newUser._id);
+    // const token = signToken(newUser._id);
     createSendToken(newUser, 201, res);
   } catch (err) {
     console.error("Error creating user:", err);
