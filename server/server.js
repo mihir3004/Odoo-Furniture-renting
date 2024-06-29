@@ -4,12 +4,12 @@ const connectDB = require("./config/dbConfig");
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 
 const userRoutes = require("./routes/userRoutes");
-
+const furnitureRoutes = require("./routes/furnitureRoutes");
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/auth", userRoutes);
-
+app.use("/", furnitureRoutes);
 connectDB();
 app.post("/payment", async (req, res) => {
   const product = await stripe.products.create({
